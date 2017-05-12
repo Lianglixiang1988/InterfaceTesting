@@ -1,0 +1,199 @@
+<?xml version="1.0" ?>
+<testsuite errors="0" failures="0" name="Case.RoomTest.RoomTest-20170510171504" tests="19" time="15.708">
+	<testcase classname="Case.RoomTest.RoomTest" name="test_add_new_room_user_002_wrong_room_id" time="0.865"/>
+	<testcase classname="Case.RoomTest.RoomTest" name="test_add_new_room_user_003_wrong_token" time="0.799"/>
+	<testcase classname="Case.RoomTest.RoomTest" name="test_add_new_room_user_004_user_existed" time="0.819"/>
+	<testcase classname="Case.RoomTest.RoomTest" name="test_add_new_room_user_004_wrong_user_id" time="0.738"/>
+	<testcase classname="Case.RoomTest.RoomTest" name="test_add_room_user_001" time="0.813"/>
+	<testcase classname="Case.RoomTest.RoomTest" name="test_aquery_room_001" time="0.854"/>
+	<testcase classname="Case.RoomTest.RoomTest" name="test_create_room_001" time="0.729"/>
+	<testcase classname="Case.RoomTest.RoomTest" name="test_create_room_002_empty_name" time="0.698"/>
+	<testcase classname="Case.RoomTest.RoomTest" name="test_create_room_003_empty_description" time="0.715"/>
+	<testcase classname="Case.RoomTest.RoomTest" name="test_delete_room_001_correct_token" time="0.751"/>
+	<testcase classname="Case.RoomTest.RoomTest" name="test_delete_room_002_not_existed_room" time="0.722"/>
+	<testcase classname="Case.RoomTest.RoomTest" name="test_delete_room_003_not_creator" time="1.083"/>
+	<testcase classname="Case.RoomTest.RoomTest" name="test_delete_room_user_001" time="0.810"/>
+	<testcase classname="Case.RoomTest.RoomTest" name="test_delete_room_user_002_user_not_existed" time="0.880"/>
+	<testcase classname="Case.RoomTest.RoomTest" name="test_delete_room_user_003_wrong_token" time="0.852"/>
+	<testcase classname="Case.RoomTest.RoomTest" name="test_delete_room_user_004_wrong_room" time="0.810"/>
+	<testcase classname="Case.RoomTest.RoomTest" name="test_delete_room_user_005_not_creator" time="1.222"/>
+	<testcase classname="Case.RoomTest.RoomTest" name="test_update_room_001" time="0.798"/>
+	<testcase classname="Case.RoomTest.RoomTest" name="test_update_room_002_empty_name" time="0.750"/>
+	<system-out>
+<![CDATA[Case ID: Case.RoomTest.RoomTest.test_add_new_room_user_002_wrong_room_id
+Description: test add a new room user with wrong room id
+url: http://10.0.11.242:8080/rest/api/rooms?access_token=03de9987-5845-4608-a60d-b98c07385051
+ payload: {'room': {'name': 'e0d2e7d4091', 'description': 'cc56547ce8'}}
+response: status_code is 200 , {"room":{"name":"e0d2e7d4091","description":"cc56547ce8","id":3560}}
+
+url_add_room_user: http://10.0.11.242:8080/rest/api/room_users?access_token=03de9987-5845-4608-a60d-b98c07385051
+ payload1: {'user_id': 74374, 'room_id': 0}
+response: status_code is 400 , {"errorCode":"10000","errorMsg":"No room for such user"}
+
+Case ID: Case.RoomTest.RoomTest.test_add_new_room_user_003_wrong_token
+Description: test add a new room user with wrong token
+url: http://10.0.11.242:8080/rest/api/rooms?access_token=18c513e2-fc27-4c77-9be1-c685cbef3b95
+ payload: {'room': {'name': '7afa63d3256', 'description': 'b34a6d77c7'}}
+response: status_code is 200 , {"room":{"name":"7afa63d3256","description":"b34a6d77c7","id":3561}}
+
+url_add_room_user: http://10.0.11.242:8080/rest/api/room_users?access_token=000000
+ payload1: {'user_id': 74374, 'room_id': 3561}
+response: status_code is 400 , {"errorCode":"30005","errorMsg":"user token check failed"}
+
+Case ID: Case.RoomTest.RoomTest.test_add_new_room_user_004_user_existed
+Description: test add a new room user with a user who is already in the room
+url: http://10.0.11.242:8080/rest/api/rooms?access_token=bd290e32-eb90-40b2-9686-7872c38a07cf
+ payload: {'room': {'name': '17434ea5a05', 'description': 'a52f0faa54'}}
+response: status_code is 200 , {"room":{"name":"17434ea5a05","description":"a52f0faa54","id":3562}}
+
+url_add_room_user: http://10.0.11.242:8080/rest/api/room_users?access_token=bd290e32-eb90-40b2-9686-7872c38a07cf
+ payload1: {'user_id': 74374, 'room_id': 3562}
+response: status_code is 400 , {"errorCode":"10000","errorMsg":"user exists in the room"}
+
+Case ID: Case.RoomTest.RoomTest.test_add_new_room_user_004_wrong_user_id
+Description: test add a new room user with wrong user id
+url: http://10.0.11.242:8080/rest/api/rooms?access_token=61a5cf36-c811-4fcf-8c91-3783adf0c351
+ payload: {'room': {'name': 'c6b0f2a22cb', 'description': '1110ffe05a'}}
+response: status_code is 200 , {"room":{"name":"c6b0f2a22cb","description":"1110ffe05a","id":3563}}
+
+url_add_room_user: http://10.0.11.242:8080/rest/api/room_users?access_token=61a5cf36-c811-4fcf-8c91-3783adf0c351
+ payload1: {'user_id': -9527, 'room_id': 3563}
+response: status_code is 400 , {"errorCode":"30009","errorMsg":"no such user"}
+
+Case ID: Case.RoomTest.RoomTest.test_add_room_user_001
+Description: test add a new room user
+url: http://10.0.11.242:8080/rest/api/rooms?access_token=4c52a5c7-73f0-4eb1-9043-76739a20c5ea
+ payload: {'room': {'name': '372aeab7103', 'description': '8a4b5a1735'}}
+response: status_code is 200 , {"room":{"name":"372aeab7103","description":"8a4b5a1735","id":3564}}
+
+url_add_room_user: http://10.0.11.242:8080/rest/api/room_users?access_token=4c52a5c7-73f0-4eb1-9043-76739a20c5ea
+ payload1: {'user_id': 74374, 'room_id': 3564}
+response: status_code is 200 , {}
+
+Case ID: Case.RoomTest.RoomTest.test_aquery_room_001
+Description: query room info
+response: status_code is 200 , {"room":{"name":"a44ce957ab1","description":"61647ef0cf","id":3565}}
+
+query_room_url: http://10.0.11.242:8080/rest/api/rooms/3565?access_token=154de598-1cac-44db-8959-cbd1561c4beb
+query_response: status_code is 200 , {"room":{"name":"a44ce957ab1","description":"61647ef0cf","id":3565},"users":[{"id":74373,"username":"lin.liu1"}]}
+
+Case ID: Case.RoomTest.RoomTest.test_create_room_001
+Description: create a new room
+url: http://10.0.11.242:8080/rest/api/rooms?access_token=9f91c9dd-1a74-4e42-b653-a939345b1ae1
+payload: {'room': {'name': '96a3c39f3c7', 'description': '0677823162'}}
+response: status_code is 200 , {"room":{"name":"96a3c39f3c7","description":"0677823162","id":3566}}
+
+Case ID: Case.RoomTest.RoomTest.test_create_room_002_empty_name
+Description: create a new room with empty name
+url: http://10.0.11.242:8080/rest/api/rooms?access_token=75760d14-3ce6-46bc-bff4-ae69c7c0dd84
+payload: {'room': {'name': '', 'description': '842f43fbbc'}}
+response: status_code is 400 , {"errorCode":"10100","errorMsg":"invalid room name"}
+
+Case ID: Case.RoomTest.RoomTest.test_create_room_003_empty_description
+Description: create a new room with empty name
+url: http://10.0.11.242:8080/rest/api/rooms?access_token=b8a3dc06-137f-4770-ad0f-01aa42518690
+payload: {'room': {'name': 'fcdbc220044', 'description': ''}}
+response: status_code is 200 , {"room":{"name":"fcdbc220044","description":"","id":3567}}
+
+Case ID: Case.RoomTest.RoomTest.test_delete_room_001_correct_token
+Description: test delete room
+response: status_code is 200 , {"room":{"name":"53f466ad35d","description":"af8d75bad8","id":3568}}
+
+delete_room_url: http://10.0.11.242:8080/rest/api/rooms/3568?access_token=74603c48-f5bd-4e87-a3e0-6999664d8a6f
+delete_response: status_code is 200 , {}
+
+Case ID: Case.RoomTest.RoomTest.test_delete_room_002_not_existed_room
+Description: test delete a not existed room
+delete_room_url: http://10.0.11.242:8080/rest/api/rooms/?access_token=a1c371ce-7567-4796-b11f-6dee5c1b4852
+delete_response: status_code is 400 , HTTP 405 Method Not Allowed
+
+Case ID: Case.RoomTest.RoomTest.test_delete_room_003_not_creator
+Description: test delete room with a user who is not the creator of the room
+delete_room_url: http://10.0.11.242:8080/rest/api/rooms/3569?access_token=8493cae0-a5e6-4d61-ae5f-3efcedda4471
+delete_response: status_code is 400 , {"errorCode":"10000","errorMsg":"No room for such user"}
+
+Case ID: Case.RoomTest.RoomTest.test_delete_room_user_001
+Description: test delete a room user
+url: http://10.0.11.242:8080/rest/api/rooms?access_token=c0836a47-811f-40d3-87dc-6564ee7cae0c
+ payload: {'room': {'name': '8fc6a8e662b', 'description': '4234e2c3c9'}}
+response: status_code is 200 , {"room":{"name":"8fc6a8e662b","description":"4234e2c3c9","id":3570}}
+
+url_add_room_user: http://10.0.11.242:8080/rest/api/room_users?access_token=c0836a47-811f-40d3-87dc-6564ee7cae0c
+ payload1: {'user_id': 74374, 'room_id': 3570}
+response: status_code is 200 , {}
+
+url_delete_room_user: http://10.0.11.242:8080/rest/api/room_users?access_token=c0836a47-811f-40d3-87dc-6564ee7cae0c&user_id=74374&room_id=3570
+response: status_code is 200 , {}
+
+Case ID: Case.RoomTest.RoomTest.test_delete_room_user_002_user_not_existed
+Description: test delete a room user who is not in the room
+url: http://10.0.11.242:8080/rest/api/rooms?access_token=9d938670-b6be-4084-a9b8-6cf0313579a5
+ payload: {'room': {'name': '688a9b09b65', 'description': '943491d056'}}
+response: status_code is 200 , {"room":{"name":"688a9b09b65","description":"943491d056","id":3571}}
+
+url_add_room_user: http://10.0.11.242:8080/rest/api/room_users?access_token=9d938670-b6be-4084-a9b8-6cf0313579a5
+ payload1: {'user_id': 74374, 'room_id': 3571}
+response: status_code is 200 , {}
+
+url_delete_room_user: http://10.0.11.242:8080/rest/api/room_users?access_token=9d938670-b6be-4084-a9b8-6cf0313579a5&user_id=74374&room_id=3571
+response: status_code is 400 , {"errorCode":"10000","errorMsg":"user does not exist in the room"}
+
+Case ID: Case.RoomTest.RoomTest.test_delete_room_user_003_wrong_token
+Description: test delete a room user with wrong token
+url: http://10.0.11.242:8080/rest/api/rooms?access_token=3b8560c2-e665-4e4d-a524-ea90f3fc0853
+ payload: {'room': {'name': '19b72652ac1', 'description': 'd56182ca8f'}}
+response: status_code is 200 , {"room":{"name":"19b72652ac1","description":"d56182ca8f","id":3572}}
+
+url_add_room_user: http://10.0.11.242:8080/rest/api/room_users?access_token=3b8560c2-e665-4e4d-a524-ea90f3fc0853
+ payload1: {'user_id': 74374, 'room_id': 3572}
+response: status_code is 200 , {}
+
+url_delete_room_user: http://10.0.11.242:8080/rest/api/room_users?access_token=3b8560c2-e665-4e4d-a524-ea90f3fc08530&user_id=74374&room_id=3572
+response: status_code is 400 , {"errorCode":"30005","errorMsg":"user token check failed"}
+
+Case ID: Case.RoomTest.RoomTest.test_delete_room_user_004_wrong_room
+Description: test delete a room user with wrong room
+url: http://10.0.11.242:8080/rest/api/rooms?access_token=16782c55-ad25-40f2-9732-7a06d46a94bf
+ payload: {'room': {'name': '64731bdad68', 'description': '9c67f053b5'}}
+response: status_code is 200 , {"room":{"name":"64731bdad68","description":"9c67f053b5","id":3573}}
+
+url_add_room_user: http://10.0.11.242:8080/rest/api/room_users?access_token=16782c55-ad25-40f2-9732-7a06d46a94bf
+ payload1: {'user_id': 74374, 'room_id': 3573}
+response: status_code is 200 , {}
+
+url_delete_room_user: http://10.0.11.242:8080/rest/api/room_users?access_token=16782c55-ad25-40f2-9732-7a06d46a94bf&user_id=74374&room_id=35739527
+response: status_code is 400 , {"errorCode":"10000","errorMsg":"No room for such user"}
+
+Case ID: Case.RoomTest.RoomTest.test_delete_room_user_005_not_creator
+Description: test delete a room user with a user who is not the room creator
+url: http://10.0.11.242:8080/rest/api/rooms?access_token=3b1fc989-21a7-4a1e-9d54-c172de0a96db
+ payload: {'room': {'name': '3dffacf186b', 'description': 'b45f628e42'}}
+response: status_code is 200 , {"room":{"name":"3dffacf186b","description":"b45f628e42","id":3574}}
+
+url_add_room_user: http://10.0.11.242:8080/rest/api/room_users?access_token=3b1fc989-21a7-4a1e-9d54-c172de0a96db
+ payload1: {'user_id': 74374, 'room_id': 3574}
+response: status_code is 200 , {}
+
+url_delete_room_user: http://10.0.11.242:8080/rest/api/room_users?access_token=1ab7ee7c-d456-4385-867e-97d68d204aa6&user_id=74374&room_id=3574
+response: status_code is 400 , {"errorCode":"10000","errorMsg":"No room for such user"}
+
+Case ID: Case.RoomTest.RoomTest.test_update_room_001
+Description: update room
+response: status_code is 200 , {"room":{"name":"57aff7ab989","description":"f0a63b594a","id":3575}}
+
+update_room_url: http://10.0.11.242:8080/rest/api/rooms/3575?access_token=3a3229db-746b-421f-b8d3-01a7a9632be2
+update_payload: {'room': {'name': '97031e7ce58', 'description': '4fe6beaa76'}}
+update_response: status_code is 200 , {"room":{"name":"97031e7ce58","description":"4fe6beaa76","id":3575}}
+
+Case ID: Case.RoomTest.RoomTest.test_update_room_002_empty_name
+Description: update room with empty room name
+response: status_code is 200 , {"room":{"name":"7bf9d3f186c","description":"ff6e7d488f","id":3576}}
+
+update_room_url: http://10.0.11.242:8080/rest/api/rooms/3576?access_token=d306ef48-cd3f-46b7-acce-c3be7ababd9d
+update_payload: {'room': {'name': '', 'description': '0d005c90b4'}}
+update_response: status_code is 400 , {"errorCode":"10100","errorMsg":"invalid room name"}
+
+]]>	</system-out>
+	<system-err>
+<![CDATA[]]>	</system-err>
+</testsuite>

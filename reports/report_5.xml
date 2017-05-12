@@ -1,0 +1,355 @@
+<?xml version="1.0" ?>
+<testsuite errors="14" failures="0" name="Case.ShopTest.ShopTest-20170510171539" tests="35" time="28.138">
+	<testcase classname="Case.ShopTest.ShopTest" name="test_delete_cart_item_001" time="0.726"/>
+	<testcase classname="Case.ShopTest.ShopTest" name="test_delete_cart_item_002_wrong_item" time="0.734"/>
+	<testcase classname="Case.ShopTest.ShopTest" name="test_delete_cart_item_003_wrong_token" time="0.741"/>
+	<testcase classname="Case.ShopTest.ShopTest" name="test_delete_cart_item_004_item_amount_is_zero" time="0.726"/>
+	<testcase classname="Case.ShopTest.ShopTest" name="test_order_001_wrong_item" time="0.725"/>
+	<testcase classname="Case.ShopTest.ShopTest" name="test_order_002_wrong_token" time="0.379"/>
+	<testcase classname="Case.ShopTest.ShopTest" name="test_order_003_item_amount_float" time="0.914"/>
+	<testcase classname="Case.ShopTest.ShopTest" name="test_payment_001" time="1.016"/>
+	<testcase classname="Case.ShopTest.ShopTest" name="test_payment_002_wrong_token" time="0.907"/>
+	<testcase classname="Case.ShopTest.ShopTest" name="test_payment_003_wrong_order_no" time="0.910"/>
+	<testcase classname="Case.ShopTest.ShopTest" name="test_query_cart_item_001" time="0.758"/>
+	<testcase classname="Case.ShopTest.ShopTest" name="test_query_cart_item_002_wrong_token" time="0.749"/>
+	<testcase classname="Case.ShopTest.ShopTest" name="test_query_order_002_wrong_token" time="0.905"/>
+	<testcase classname="Case.ShopTest.ShopTest" name="test_query_order_003_no_order" time="0.724"/>
+	<testcase classname="Case.ShopTest.ShopTest" name="test_refresh_cart_item_001_one_item" time="0.732"/>
+	<testcase classname="Case.ShopTest.ShopTest" name="test_refresh_cart_item_002_two_item" time="0.720"/>
+	<testcase classname="Case.ShopTest.ShopTest" name="test_refresh_cart_item_003_item_not_exist" time="0.731"/>
+	<testcase classname="Case.ShopTest.ShopTest" name="test_refresh_cart_item_004_item_amount_float" time="0.688"/>
+	<testcase classname="Case.ShopTest.ShopTest" name="test_refresh_cart_item_005_item_amount_negative_number" time="0.726"/>
+	<testcase classname="Case.ShopTest.ShopTest" name="test_refresh_cart_item_006_wrong_token" time="0.353"/>
+	<testcase classname="Case.ShopTest.ShopTest" name="test_refresh_cart_item_007_zero_item" time="0.710"/>
+	<testcase classname="Case.ShopTest.ShopTest" name="test_order_001" time="0.929">
+		<error message="Expected response code = 200. Actual = 400." type="AssertionError">
+<![CDATA[Traceback (most recent call last):
+  File "D:\Projects\QA\QA_Mainline\Automation\InterfaceTesting\Case\ShopTest.py", line 330, in test_order_001
+    self.assertEqual(200, response.status_code, 'Expected response code = 200. Actual = %s.' % response.status_code)
+AssertionError: Expected response code = 200. Actual = 400.
+]]>		</error>
+	</testcase>
+	<testcase classname="Case.ShopTest.ShopTest" name="test_order_004_item_amount_negative_number" time="0.935">
+		<error message="Expected response code = 400. Actual = 200." type="AssertionError">
+<![CDATA[Traceback (most recent call last):
+  File "D:\Projects\QA\QA_Mainline\Automation\InterfaceTesting\Case\ShopTest.py", line 420, in test_order_004_item_amount_negative_number
+    self.assertEqual(400, response.status_code, 'Expected response code = 400. Actual = %s.' % response.status_code)
+AssertionError: Expected response code = 400. Actual = 200.
+]]>		</error>
+	</testcase>
+	<testcase classname="Case.ShopTest.ShopTest" name="test_payment_004_two_requests" time="0.916">
+		<error message="'order_no'" type="KeyError">
+<![CDATA[Traceback (most recent call last):
+  File "D:\Projects\QA\QA_Mainline\Automation\InterfaceTesting\Case\ShopTest.py", line 821, in test_payment_004_two_requests
+    "order_no": data['order_no'],
+KeyError: 'order_no'
+]]>		</error>
+	</testcase>
+	<testcase classname="Case.ShopTest.ShopTest" name="test_payment_005_fee_negative" time="0.876">
+		<error message="'order_no'" type="KeyError">
+<![CDATA[Traceback (most recent call last):
+  File "D:\Projects\QA\QA_Mainline\Automation\InterfaceTesting\Case\ShopTest.py", line 855, in test_payment_005_fee_negative
+    "order_no": data['order_no'],
+KeyError: 'order_no'
+]]>		</error>
+	</testcase>
+	<testcase classname="Case.ShopTest.ShopTest" name="test_query_order_001" time="0.926">
+		<error message="'order_no'" type="KeyError">
+<![CDATA[Traceback (most recent call last):
+  File "D:\Projects\QA\QA_Mainline\Automation\InterfaceTesting\Case\ShopTest.py", line 617, in test_query_order_001
+    self.assertEqual(data['order_no'], data_rp_query_order['orders'][0]['order_no'],
+KeyError: 'order_no'
+]]>		</error>
+	</testcase>
+	<testcase classname="Case.ShopTest.ShopTest" name="test_query_order_detail_001" time="0.904">
+		<error message="'order_no'" type="KeyError">
+<![CDATA[Traceback (most recent call last):
+  File "D:\Projects\QA\QA_Mainline\Automation\InterfaceTesting\Case\ShopTest.py", line 687, in test_query_order_detail_001
+    url_query_order_detail = self.url_query_order_detail + data['order_no'] + '&token=' + token
+KeyError: 'order_no'
+]]>		</error>
+	</testcase>
+	<testcase classname="Case.ShopTest.ShopTest" name="test_query_payment_001" time="0.893">
+		<error message="'order_no'" type="KeyError">
+<![CDATA[Traceback (most recent call last):
+  File "D:\Projects\QA\QA_Mainline\Automation\InterfaceTesting\Case\ShopTest.py", line 886, in test_query_payment_001
+    "order_no": data['order_no'],
+KeyError: 'order_no'
+]]>		</error>
+	</testcase>
+	<testcase classname="Case.ShopTest.ShopTest" name="test_query_payment_002_no_payment" time="0.877">
+		<error message="'order_no'" type="KeyError">
+<![CDATA[Traceback (most recent call last):
+  File "D:\Projects\QA\QA_Mainline\Automation\InterfaceTesting\Case\ShopTest.py", line 920, in test_query_payment_002_no_payment
+    url_query_payment = self.url_query_payment + token + '&order_no=' + data['order_no']
+KeyError: 'order_no'
+]]>		</error>
+	</testcase>
+	<testcase classname="Case.ShopTest.ShopTest" name="test_query_payment_003_wrong_token" time="0.873">
+		<error message="'order_no'" type="KeyError">
+<![CDATA[Traceback (most recent call last):
+  File "D:\Projects\QA\QA_Mainline\Automation\InterfaceTesting\Case\ShopTest.py", line 953, in test_query_payment_003_wrong_token
+    "order_no": data['order_no'],
+KeyError: 'order_no'
+]]>		</error>
+	</testcase>
+	<testcase classname="Case.ShopTest.ShopTest" name="test_query_payment_004_wrong_order" time="0.903">
+		<error message="'order_no'" type="KeyError">
+<![CDATA[Traceback (most recent call last):
+  File "D:\Projects\QA\QA_Mainline\Automation\InterfaceTesting\Case\ShopTest.py", line 996, in test_query_payment_004_wrong_order
+    "order_no": data['order_no'],
+KeyError: 'order_no'
+]]>		</error>
+	</testcase>
+	<testcase classname="Case.ShopTest.ShopTest" name="test_refunds_payment_001_order_not_paid" time="0.875">
+		<error message="'order_no'" type="KeyError">
+<![CDATA[Traceback (most recent call last):
+  File "D:\Projects\QA\QA_Mainline\Automation\InterfaceTesting\Case\ShopTest.py", line 1039, in test_refunds_payment_001_order_not_paid
+    "order_no": data['order_no'],
+KeyError: 'order_no'
+]]>		</error>
+	</testcase>
+	<testcase classname="Case.ShopTest.ShopTest" name="test_update_order_001" time="0.902">
+		<error message="'order_no'" type="KeyError">
+<![CDATA[Traceback (most recent call last):
+  File "D:\Projects\QA\QA_Mainline\Automation\InterfaceTesting\Case\ShopTest.py", line 441, in test_update_order_001
+    new_order_no = data['order_no']
+KeyError: 'order_no'
+]]>		</error>
+	</testcase>
+	<testcase classname="Case.ShopTest.ShopTest" name="test_update_order_002_wrong_token" time="0.884">
+		<error message="'order_no'" type="KeyError">
+<![CDATA[Traceback (most recent call last):
+  File "D:\Projects\QA\QA_Mainline\Automation\InterfaceTesting\Case\ShopTest.py", line 509, in test_update_order_002_wrong_token
+    new_order_no = data['order_no']
+KeyError: 'order_no'
+]]>		</error>
+	</testcase>
+	<testcase classname="Case.ShopTest.ShopTest" name="test_update_order_003_wrong_order_no" time="0.871">
+		<error message="'order_no'" type="KeyError">
+<![CDATA[Traceback (most recent call last):
+  File "D:\Projects\QA\QA_Mainline\Automation\InterfaceTesting\Case\ShopTest.py", line 560, in test_update_order_003_wrong_order_no
+    new_order_no = data['order_no']
+KeyError: 'order_no'
+]]>		</error>
+	</testcase>
+	<system-out>
+<![CDATA[Case ID: Case.ShopTest.ShopTest.test_delete_cart_item_001
+Description: test delete cart item
+url: http://10.0.11.242:8080/rest/api/hshop/cartitem
+payload: {'item_id': 2, 'amount': 1, 'token': u'89aabdb5-69de-4ff9-bcf2-8176d968c589'}
+response: status_code is 200 , {"Msg":"update cart success"}
+
+url_delete: http://10.0.11.242:8080/rest/api/hshop/cartitem?token=89aabdb5-69de-4ff9-bcf2-8176d968c589&item_id=2
+
+response: status_code is 200 , {"Msg":"delete ok"}
+
+Case ID: Case.ShopTest.ShopTest.test_delete_cart_item_002_wrong_item
+Description: test delete cart item but the item does not exist
+url: http://10.0.11.242:8080/rest/api/hshop/cartitem
+payload: {'item_id': 2, 'amount': 1, 'token': u'1bab9197-9b8a-4948-aeb0-271d7409fd7a'}
+response: status_code is 200 , {"Msg":"update cart success"}
+
+url_delete: http://10.0.11.242:8080/rest/api/hshop/cartitem?token=1bab9197-9b8a-4948-aeb0-271d7409fd7a&item_id=9527
+
+response: status_code is 400 , {"errorCode":"10100","errorMsg":"no item"}
+
+Case ID: Case.ShopTest.ShopTest.test_delete_cart_item_003_wrong_token
+Description: test delete cart item with wrong token
+url: http://10.0.11.242:8080/rest/api/hshop/cartitem
+payload: {'item_id': 2, 'amount': 1, 'token': u'53cea9fa-e4e3-4ba6-b7ec-058563a55658'}
+response: status_code is 200 , {"Msg":"update cart success"}
+
+url_delete: http://10.0.11.242:8080/rest/api/hshop/cartitem?token=53cea9fa-e4e3-4ba6-b7ec-058563a556589527&item_id=2
+
+response: status_code is 400 , {"errorCode":"30005","errorMsg":"user token check failed"}
+
+Case ID: Case.ShopTest.ShopTest.test_delete_cart_item_004_item_amount_is_zero
+Description: test delete cart item but the item amount is zero in cart
+url_delete: http://10.0.11.242:8080/rest/api/hshop/cartitem?token=87fd21e0-776b-48a1-bc62-4db8cfea3af2&item_id=2
+
+response: status_code is 400 , {"errorCode":"10100","errorMsg":"no item"}
+
+Case ID: Case.ShopTest.ShopTest.test_order_001
+Description: order 1 item
+url: http://10.0.11.242:8080/rest/api/hshop/order
+payload: {'items': [{'item_id': 2, 'amount': 1}], 'token': u'0214b13c-d7f9-4dbd-92a0-af6f5a5a7188'}
+response: status_code is 400
+
+Case ID: Case.ShopTest.ShopTest.test_order_001_wrong_item
+Description: order 1 item
+url: http://10.0.11.242:8080/rest/api/hshop/order
+payload: {'items': [{'item_id': 99, 'amount': 1}], 'token': u'dae7223d-49b7-4ead-9739-2cb55c3c0272'}
+response: status_code is 400
+
+Case ID: Case.ShopTest.ShopTest.test_order_002_wrong_token
+Description: order 1 item
+url: http://10.0.11.242:8080/rest/api/hshop/order
+payload: {'items': [{'item_id': 2, 'amount': 1}], 'token': 9527}
+response: status_code is 400, {"errorCode":"30005","errorMsg":"user token check failed"}
+
+Case ID: Case.ShopTest.ShopTest.test_order_003_item_amount_float
+Description: order 1 item but the item number is float
+url: http://10.0.11.242:8080/rest/api/hshop/order
+payload: {'items': [{'item_id': 2, 'amount': 1.1}], 'token': u'694be0b7-a68b-459c-b8f5-0605123baf89'}
+response: status_code is 400
+
+Case ID: Case.ShopTest.ShopTest.test_order_004_item_amount_negative_number
+Description: order 1 item but the item number is negative number
+url: http://10.0.11.242:8080/rest/api/hshop/order
+payload: {'items': [{'item_id': 2, 'amount': -3}], 'token': u'58101fcc-b6e0-4620-83fc-0cf15bf4a75a'}
+response: status_code is 200
+
+Case ID: Case.ShopTest.ShopTest.test_payment_001
+Description: test make a payment
+url_payment: http://10.0.11.242:8080/rest/api/ali/payment {'body': 'description of the products,exp:2*HMD,2*Controller', 'token': u'70a8ba13-45c7-4ca7-973d-033b342538b2', 'total_fee': 22.0, 'order_no': u'80774488-b397-4b14-8fb1-5253795efab0', 'subject': 'description of the order'}
+
+response: status_code is 200 {"alipay_url":"https://mapi.alipay.com/gateway.do?_input_charset=utf-8&body=descriptionoftheproducts,exp:2*HMD,2*Controller&it_b_pay=30m&notify_url=http://10.0.11.242:8080/rest/api/ali/prenotify&out_trade_no=80774488-b397-4b14-8fb1-5253795efab0&partner=2088621467830355&payment_type=1&return_url=http://10.0.11.246:8883/cart/pay-status&seller_id=2088621467830355&service=create_direct_pay_by_user&subject=description of the order&total_fee=22.0&sign=e0ad1f458ebded7b47233357848660a7&sign_type=MD5"}
+
+Case ID: Case.ShopTest.ShopTest.test_payment_002_wrong_token
+Description: test make a payment
+url_payment: http://10.0.11.242:8080/rest/api/ali/payment {'body': 'description of the products,exp:2*HMD,2*Controller', 'token': u'62a2c6a2-3393-454b-9ff7-cda5d99672639527', 'total_fee': 22.0, 'order_no': u'2c90bb3a-fbf2-4187-899b-0142637cb865', 'subject': 'description of the order'}
+
+response: status_code is 400 {"errorCode":"30005","errorMsg":"user token check failed"}
+
+Case ID: Case.ShopTest.ShopTest.test_payment_003_wrong_order_no
+Description: test make a payment
+url_payment: http://10.0.11.242:8080/rest/api/ali/payment {'body': 'description of the products,exp:2*HMD,2*Controller', 'token': u'f8d8495c-b476-4df9-b3da-d762ca066711', 'total_fee': 22.0, 'order_no': u'c203bec2-6c13-4454-99d7-0b853f009dbf9527', 'subject': 'description of the order'}
+
+response: status_code is 400 {"errorCode":"10000","errorMsg":"no order"}
+
+Case ID: Case.ShopTest.ShopTest.test_payment_004_two_requests
+Description: test make a payment
+Case ID: Case.ShopTest.ShopTest.test_payment_005_fee_negative
+Description: test make a payment with negative fee
+Case ID: Case.ShopTest.ShopTest.test_query_cart_item_001
+Description: test query cart item
+url: http://10.0.11.242:8080/rest/api/hshop/cartitem
+payload: {'item_id': 2, 'amount': 1, 'token': u'bc5a7d3a-df92-4b2e-b6ff-ab020044c7b9'}
+response: status_code is 200 , {"Msg":"update cart success"}
+
+url_query: http://10.0.11.242:8080/rest/api/hshop/cartitem?token=bc5a7d3a-df92-4b2e-b6ff-ab020044c7b9
+
+response: status_code is 200
+
+Case ID: Case.ShopTest.ShopTest.test_query_cart_item_002_wrong_token
+Description: test query cart item with wrong token
+url: http://10.0.11.242:8080/rest/api/hshop/cartitem
+payload: {'item_id': 2, 'amount': 1, 'token': u'93fe0041-341e-4185-aad1-9abaedffcab0'}
+response: status_code is 200 , {"Msg":"update cart success"}
+
+url_query: http://10.0.11.242:8080/rest/api/hshop/cartitem?token=93fe0041-341e-4185-aad1-9abaedffcab00
+
+response: status_code is 400
+
+Case ID: Case.ShopTest.ShopTest.test_query_order_001
+Description: order 1 item
+url: http://10.0.11.242:8080/rest/api/hshop/order
+payload: {'items': [{'item_id': 2, 'amount': 1}], 'token': u'a9c4aa50-fba0-4e31-bdd6-c9a5381fdf5a'}
+response: status_code is 400
+
+url_query_order: http://10.0.11.242:8080/rest/api/hshop/order?token=a9c4aa50-fba0-4e31-bdd6-c9a5381fdf5a
+
+response: status_code is 200
+
+Case ID: Case.ShopTest.ShopTest.test_query_order_002_wrong_token
+Description: order 1 item
+url: http://10.0.11.242:8080/rest/api/hshop/order
+payload: {'items': [{'item_id': 2, 'amount': 1}], 'token': u'13533d62-1f0f-46d2-8bb9-bf31850dcd66'}
+response: status_code is 400
+
+url_query_order: http://10.0.11.242:8080/rest/api/hshop/order?token=13533d62-1f0f-46d2-8bb9-bf31850dcd669527
+
+response: status_code is 400
+
+Case ID: Case.ShopTest.ShopTest.test_query_order_003_no_order
+Description: order 1 item
+url_query_order: http://10.0.11.242:8080/rest/api/hshop/order?token=5de64004-e1a8-45bb-a4f2-f518f400129b
+
+response: status_code is 200
+
+{u'orders': []}
+0
+Case ID: Case.ShopTest.ShopTest.test_query_order_detail_001
+Description: order 1 item
+url: http://10.0.11.242:8080/rest/api/hshop/order
+payload: {'items': [{'item_id': 2, 'amount': 1}], 'token': u'9a5c4994-1f01-4f14-a12c-97f68ce16ee0'}
+response: status_code is 400
+
+Case ID: Case.ShopTest.ShopTest.test_query_payment_001
+Description: test query a payment
+Case ID: Case.ShopTest.ShopTest.test_query_payment_002_no_payment
+Description: test query a payment but user has not make the payment yet
+Case ID: Case.ShopTest.ShopTest.test_query_payment_003_wrong_token
+Description: test query a payment with wrong token
+Case ID: Case.ShopTest.ShopTest.test_query_payment_004_wrong_order
+Description: test query a payment with wrong order no
+Case ID: Case.ShopTest.ShopTest.test_refresh_cart_item_001_one_item
+Description: refresh cart item
+url: http://10.0.11.242:8080/rest/api/hshop/cartitem
+payload: {'item_id': 2, 'amount': 1, 'token': u'ad7777a4-53a8-4a62-84e5-5b5fda9eadca'}
+response: status_code is 200
+
+Case ID: Case.ShopTest.ShopTest.test_refresh_cart_item_002_two_item
+Description: refresh cart item
+url: http://10.0.11.242:8080/rest/api/hshop/cartitem
+payload: {'item_id': 2, 'amount': 2, 'token': u'1c9e66e7-7e5c-4464-ad4b-95fb9316b6bf'}
+response: status_code is 200 , {"Msg":"update cart success"}
+
+Case ID: Case.ShopTest.ShopTest.test_refresh_cart_item_003_item_not_exist
+Description: test refresh cart item, but the item does not exist
+url: http://10.0.11.242:8080/rest/api/hshop/cartitem
+payload: {'item_id': 9527, 'amount': 2, 'token': u'6c0e9e34-db08-49b8-af69-0a0dd1f2d8a4'}
+response: status_code is 400 , {"errorCode":"60001","errorMsg":"no item"}
+
+Case ID: Case.ShopTest.ShopTest.test_refresh_cart_item_004_item_amount_float
+Description: test refresh cart item, but amount is float
+url: http://10.0.11.242:8080/rest/api/hshop/cartitem
+payload: {'item_id': 2, 'amount': 0.3, 'token': u'420208bf-b655-472b-9183-22709d334bc1'}
+response: status_code is 400 , {"errorCode":"10100","errorMsg":"amount error"}
+
+Case ID: Case.ShopTest.ShopTest.test_refresh_cart_item_005_item_amount_negative_number
+Description: test refresh cart item, but the item does not exist
+url: http://10.0.11.242:8080/rest/api/hshop/cartitem
+payload: {'item_id': 2, 'amount': -3, 'token': u'c60880a4-b161-4eb3-a734-a44714937070'}
+response: status_code is 400 , {"errorCode":"10100","errorMsg":"amount error"}
+
+Case ID: Case.ShopTest.ShopTest.test_refresh_cart_item_006_wrong_token
+Description: test refresh cart item, but the item does not exist
+url: http://10.0.11.242:8080/rest/api/hshop/cartitem
+payload: {'item_id': 2, 'amount': 3, 'token': 9527}
+response: status_code is 400 , {"errorCode":"30005","errorMsg":"user token check failed"}
+
+Case ID: Case.ShopTest.ShopTest.test_refresh_cart_item_007_zero_item
+Description: refresh cart item
+url: http://10.0.11.242:8080/rest/api/hshop/cartitem
+payload: {'item_id': 2, 'amount': 0, 'token': u'e3e21af3-93a8-4223-aae3-723ffdd16347'}
+response: status_code is 400 , {"errorCode":"10100","errorMsg":"amount error"}
+
+Case ID: Case.ShopTest.ShopTest.test_refunds_payment_001_order_not_paid
+Description: test refunds payment but order not paid
+Case ID: Case.ShopTest.ShopTest.test_update_order_001
+Description: test update an order
+{u'errorCode': u'60007', u'errorMsg': u'id: 2 out of limit'}
+url: http://10.0.11.242:8080/rest/api/hshop/order
+payload: {'items': [{'item_id': 2, 'amount': 1}], 'token': u'c6620573-ef14-4e9c-9c5c-6c7fc223a8dc'}
+response: status_code is 400
+
+Case ID: Case.ShopTest.ShopTest.test_update_order_002_wrong_token
+Description: test update an order
+{u'errorCode': u'60007', u'errorMsg': u'id: 2 out of limit'}
+url: http://10.0.11.242:8080/rest/api/hshop/order
+payload: {'items': [{'item_id': 2, 'amount': 1}], 'token': u'f58530e8-b86b-43cd-9dea-360bdeef53bf'}
+response: status_code is 400
+
+Case ID: Case.ShopTest.ShopTest.test_update_order_003_wrong_order_no
+Description: test update an order
+{u'errorCode': u'60007', u'errorMsg': u'id: 2 out of limit'}
+url: http://10.0.11.242:8080/rest/api/hshop/order
+payload: {'items': [{'item_id': 2, 'amount': 1}], 'token': u'8d5cbecc-09d7-49b4-bc11-d741d3da7aca'}
+response: status_code is 400
+
+]]>	</system-out>
+	<system-err>
+<![CDATA[]]>	</system-err>
+</testsuite>

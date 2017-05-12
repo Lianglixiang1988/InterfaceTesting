@@ -1,0 +1,63 @@
+<?xml version="1.0" ?>
+<testsuite errors="1" failures="0" name="Case.MembershipTest.MembershipTest-20170510171621" tests="7" time="0.270">
+	<testcase classname="Case.MembershipTest.MembershipTest" name="test_001_check_all_sellableItems" time="0.045"/>
+	<testcase classname="Case.MembershipTest.MembershipTest" name="test_001_check_user_info" time="0.009"/>
+	<testcase classname="Case.MembershipTest.MembershipTest" name="test_001_create_Membership_order" time="0.081"/>
+	<testcase classname="Case.MembershipTest.MembershipTest" name="test_002_null_Authorization" time="0.005"/>
+	<testcase classname="Case.MembershipTest.MembershipTest" name="test_002_null_returnUrl" time="0.032"/>
+	<testcase classname="Case.MembershipTest.MembershipTest" name="test_004_error_sellableItemId" time="0.014"/>
+	<testcase classname="Case.MembershipTest.MembershipTest" name="test_003_null_sellableItemId" time="0.084">
+		<error message="Expected response code = 400. Actual = 500." type="AssertionError">
+<![CDATA[Traceback (most recent call last):
+  File "D:\Projects\QA\QA_Mainline\Automation\InterfaceTesting\Case\MembershipTest.py", line 82, in test_003_null_sellableItemId
+    self.assertEqual(400, rp.status_code, 'Expected response code = 400. Actual = %s.' % rp.status_code)
+AssertionError: Expected response code = 400. Actual = 500.
+]]>		</error>
+	</testcase>
+	<system-out>
+<![CDATA[Case ID: Case.MembershipTest.MembershipTest.test_001_check_all_sellableItems
+ Description: check all sellableItems
+url_check_Membership_list: http://10.0.11.242:8080/rest/api/membership/sellableItems
+
+response: status_code is 200 , {"itemTypeList":[{"membershipType":"popular","sellableItems":[{"sellableItemId":3,"amount":0.01,"duration":1,"unit":"months"},{"sellableItemId":2,"amount":0.03,"duration":3,"unit":"months"},{"sellableItemId":1,"amount":0.02,"duration":2,"unit":"months"}]},{"membershipType":"casual","sellableItems":[{"sellableItemId":6,"amount":0.01,"duration":1,"unit":"months"},{"sellableItemId":5,"amount":0.03,"duration":3,"unit":"months"},{"sellableItemId":4,"amount":0.02,"duration":2,"unit":"months"}]}]}
+
+Case ID: Case.MembershipTest.MembershipTest.test_001_check_user_info
+ Description: check user info
+url_check_user_info: http://10.0.11.242:8080/rest/api/membership/user-info
+
+response: status_code is 200 , {"membershipType":"normal"}
+
+Case ID: Case.MembershipTest.MembershipTest.test_001_create_Membership_order
+ Description: create Membership order
+url: http://10.0.11.242:8080/rest/api/membership/order
+payload: {'sellableItemId': 1, 'returnUrl': 'http://www.hypereal.com'}
+response: status_code is 200 , {"alipayUrl":"https://mapi.alipay.com/gateway.do?_input_charset=utf-8&body=Membership+content&it_b_pay=30m&notify_url=http%3A%2F%2F10.0.11.242%3A8080%2F%2Frest%2Fapi%2Fpayment%2Falipay%2Fnotify&out_trade_no=1357a92e-66cb-4370-88bf-5f70d301f939&partner=2088621467830355&payment_type=1&return_url=http%3A%2F%2Fwww.hypereal.com&seller_id=2088621467830355&service=create_direct_pay_by_user&sign=af4786594311eee1156251dd77e19e24&sign_type=MD5&subject=Membership+subject&total_fee=0.02"}
+
+Case ID: Case.MembershipTest.MembershipTest.test_002_null_Authorization
+ Description: sellableItemId = null
+url_check_user_info: http://10.0.11.242:8080/rest/api/membership/user-info
+
+response: status_code is 400 , {"errorCode":"30005","errorMsg":"user token error"}
+
+Case ID: Case.MembershipTest.MembershipTest.test_002_null_returnUrl
+ Description: returnUrl = null
+url: http://10.0.11.242:8080/rest/api/membership/order
+payload: {'sellableItemId': 1, 'returnUrl': ''}
+response: status_code is 200 , {"alipayUrl":"https://mapi.alipay.com/gateway.do?_input_charset=utf-8&body=Membership+content&it_b_pay=30m&notify_url=http%3A%2F%2F10.0.11.242%3A8080%2F%2Frest%2Fapi%2Fpayment%2Falipay%2Fnotify&out_trade_no=7af9a603-f98a-4275-aff1-c5df6f1f1518&partner=2088621467830355&payment_type=1&seller_id=2088621467830355&service=create_direct_pay_by_user&sign=3233203ae4c13e699a3d737eee203e8d&sign_type=MD5&subject=Membership+subject&total_fee=0.02"}
+
+Case ID: Case.MembershipTest.MembershipTest.test_003_null_sellableItemId
+ Description: sellableItemId = null
+url: http://10.0.11.242:8080/rest/api/membership/order
+payload: {'sellableItemId': '', 'returnUrl': 'http://www.hypereal.com'}
+response: status_code is 500 , {"timestamp":1494407799190,"status":500,"error":"Internal Server Error","message":"Internal Server Error","path":"/rest/api/membership/order"}
+
+Case ID: Case.MembershipTest.MembershipTest.test_004_error_sellableItemId
+ Description: error sellableItemId
+url: http://10.0.11.242:8080/rest/api/membership/order
+payload: {'sellableItemId': '100', 'returnUrl': 'http://www.hypereal.com'}
+response: status_code is 500 , {"errorCode":"10000","errorMsg":"internal error"}
+
+]]>	</system-out>
+	<system-err>
+<![CDATA[]]>	</system-err>
+</testsuite>

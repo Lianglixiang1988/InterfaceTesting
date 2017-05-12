@@ -1,0 +1,22 @@
+<?xml version="1.0" ?>
+<testsuite errors="0" failures="0" name="Case.HealthTest.HealthTest-20170510171504" tests="1" time="0.028">
+	<testcase classname="Case.HealthTest.HealthTest" name="test_health_001" time="0.028"/>
+	<system-out>
+<![CDATA[Case ID: Case.HealthTest.HealthTest.test_health_001
+Description: Check service health
+url: http://10.0.11.242:8080/rest
+response: status_code is 200
+<html>
+<head>
+    <title>Hypereal Restful API</title>
+</head>
+<body>
+Hypereal Restful API
+</body>
+</html>
+
+
+]]>	</system-out>
+	<system-err>
+<![CDATA[]]>	</system-err>
+</testsuite>

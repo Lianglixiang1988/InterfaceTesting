@@ -1,0 +1,28 @@
+<?xml version="1.0" ?>
+<testsuite errors="0" failures="0" name="Case.DeveloperTest.DeveloperTest-20170510171619" tests="3" time="2.908">
+	<testcase classname="Case.DeveloperTest.DeveloperTest" name="test_developer_to_dev_001" time="1.425"/>
+	<testcase classname="Case.DeveloperTest.DeveloperTest" name="test_developer_to_dev_002_wrong_token" time="0.745"/>
+	<testcase classname="Case.DeveloperTest.DeveloperTest" name="test_developer_to_dev_003_already_applied" time="0.738"/>
+	<system-out>
+<![CDATA[Case ID: Case.DeveloperTest.DeveloperTest.test_developer_to_dev_001
+Description: test change developer to dev
+url: http://10.0.11.242:8080/rest/api/developer/apply-dev
+payload: {'website': '123123', 'city': 'Tokyo', 'project_year': '123123', 'project_member': '123123', 'name': '1234567890151561', 'project_brief': '123123', 'country': 'JP', 'project_type': '132123', 'real_name': '123123', 'state': 'TKY', 'project_url': '123123', 'zipcode': '123123123', 'project_snapshots': ['http://www.capcom.com/mh2/snapshot1.png'], 'token': u'30a90627-9080-4d31-a5d1-ab2c95838713', 'project_quarter': '123123', 'cooperation': 'capcom', 'address': 'Coke', 'has_pc': '12313', 'logo_url': '123123', 'company_email': '123123', 'staff': '13123'}
+response: status_code is 200 , {"Msg":"apply ok"}
+
+Case ID: Case.DeveloperTest.DeveloperTest.test_developer_to_dev_002_wrong_token
+Description: test change developer to dev with wrong token
+url: http://10.0.11.242:8080/rest/api/developer/apply-dev
+payload: {'website': '123123', 'city': 'Tokyo', 'project_year': '123123', 'project_member': '123123', 'name': '1234567890151561', 'project_brief': '123123', 'country': 'JP', 'project_type': '132123', 'real_name': '123123', 'state': 'TKY', 'project_url': '123123', 'zipcode': '123123123', 'project_snapshots': ['http://www.capcom.com/mh2/snapshot1.png'], 'token': u'ebc1cfdc-2c59-40b4-ab95-6e39bee616d29527', 'project_quarter': '123123', 'cooperation': 'capcom', 'address': 'Coke', 'has_pc': '12313', 'logo_url': '123123', 'company_email': '123123', 'staff': '13123'}
+response: status_code is 400 , {"errorCode":"30005","errorMsg":"user token check failed"}
+
+Case ID: Case.DeveloperTest.DeveloperTest.test_developer_to_dev_003_already_applied
+Description: test change developer to dev
+url: http://10.0.11.242:8080/rest/api/developer/apply-dev
+payload: {'website': '123123', 'city': 'Tokyo', 'project_year': '123123', 'project_member': '123123', 'name': '1234567890151561', 'project_brief': '123123', 'country': 'JP', 'project_type': '132123', 'real_name': '123123', 'state': 'TKY', 'project_url': '123123', 'zipcode': '123123123', 'project_snapshots': ['http://www.capcom.com/mh2/snapshot1.png'], 'token': u'591f3596-9b12-4616-a537-7a93ddb0c6b2', 'project_quarter': '123123', 'cooperation': 'capcom', 'address': 'Coke', 'has_pc': '12313', 'logo_url': '123123', 'company_email': '123123', 'staff': '13123'}
+response: status_code is 400 , {"errorCode":"30102","errorMsg":"already applied"}
+
+]]>	</system-out>
+	<system-err>
+<![CDATA[]]>	</system-err>
+</testsuite>

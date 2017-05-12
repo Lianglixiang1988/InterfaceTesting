@@ -1,0 +1,78 @@
+<?xml version="1.0" ?>
+<testsuite errors="0" failures="0" name="Case.BigDataTest.BigDataTest-20170510171618" tests="9" time="0.218">
+	<testcase classname="Case.BigDataTest.BigDataTest" name="test_data_UpLoad_001" time="0.095"/>
+	<testcase classname="Case.BigDataTest.BigDataTest" name="test_data_UpLoad_002_error_validator" time="0.036"/>
+	<testcase classname="Case.BigDataTest.BigDataTest" name="test_register_001_FirstRegister" time="0.015"/>
+	<testcase classname="Case.BigDataTest.BigDataTest" name="test_register_002_RegisterAgain" time="0.023"/>
+	<testcase classname="Case.BigDataTest.BigDataTest" name="test_register_003_Error_version" time="0.008"/>
+	<testcase classname="Case.BigDataTest.BigDataTest" name="test_register_004_Error_ColumnsName" time="0.019"/>
+	<testcase classname="Case.BigDataTest.BigDataTest" name="test_register_005_Error_ColumnsName" time="0.005"/>
+	<testcase classname="Case.BigDataTest.BigDataTest" name="test_register_006_Error_ColumnsName2" time="0.012"/>
+	<testcase classname="Case.BigDataTest.BigDataTest" name="test_register_007_Error_ColumnsName2" time="0.005"/>
+	<system-out>
+<![CDATA[Case ID: Case.BigDataTest.BigDataTest.test_data_UpLoad_001
+ Description: UpLoad ok
+url_register: http://10.0.11.242:8080/rest/api/collector/register
+payload: {'version': '1.0', 'name': '081057b6dd', 'columns': [{'length': 100, 'validator': '', 'type': 'string', 'name': 'name', 'column_sort': 1}, {'length': 3, 'type': 'number', 'name': 'age', 'column_sort': 2}]}
+response: status_code is 200 , {"Msg":"register ok"}
+
+url: http://10.0.11.242:8080/rest/api/collector/data
+payload1: {'table_version': '1.0', 'table_name': '081057b6dd', 'data': ['JackMa,40', 'JeffBezos,33']}
+response: status_code is 200 , {"Msg":"upload ok"}
+
+Case ID: Case.BigDataTest.BigDataTest.test_data_UpLoad_002_error_validator
+ Description: error validator
+url: http://10.0.11.242:8080/rest/api/collector/register
+ payload: {'version': '1.0', 'name': '23b293a8de', 'columns': [{'length': 100, 'validator': '123', 'type': 'string', 'name': 'name', 'column_sort': 1}, {'length': 3, 'type': 'number', 'name': 'age', 'column_sort': 2}]}
+response: status_code is 200 , {"Msg":"register ok"}
+
+url: http://10.0.11.242:8080/rest/api/collector/data
+payload1: {'table_version': '1.0', 'table_name': '23b293a8de', 'data': ['JackMa,40', 'JeffBezos,33']}
+response: status_code is 400 , {"errorCode":"70004","errorMsg":"data regex match failed"}
+
+Case ID: Case.BigDataTest.BigDataTest.test_register_001_FirstRegister
+ Description: register a new user with FirstRegister
+url: http://10.0.11.242:8080/rest/api/collector/register
+payload: {'version': '1.0', 'name': '4acfc197d3', 'columns': [{'length': 100, 'validator': '', 'type': 'string', 'name': 'name', 'column_sort': 1}, {'length': 3, 'type': 'number', 'name': 'age', 'column_sort': 2}]}
+response: status_code is 200 , {"Msg":"register ok"}
+
+Case ID: Case.BigDataTest.BigDataTest.test_register_002_RegisterAgain
+ Description: register a new user with RegisterAgain
+url: http://10.0.11.242:8080/rest/api/collector/register
+payload: {'version': '1.0', 'name': 'ff2a92ca6c', 'columns': [{'length': 100, 'validator': '', 'type': 'string', 'name': 'name', 'column_sort': 1}, {'length': 3, 'type': 'number', 'name': 'age', 'column_sort': 2}]}
+response: status_code is 400 , {"errorCode":"70001","errorMsg":"schema exists"}
+
+Case ID: Case.BigDataTest.BigDataTest.test_register_003_Error_version
+ Description: version = null
+url: http://10.0.11.242:8080/rest/api/collector/register
+payload: {'version': '', 'name': 'f242bfe2cf', 'columns': [{'length': 100, 'validator': '', 'type': 'string', 'name': 'name', 'column_sort': 1}, {'length': 3, 'type': 'number', 'name': 'age', 'column_sort': 2}]}
+response: status_code is 400 , {"errorCode":"70004","errorMsg":"schema validate failed"}
+
+Case ID: Case.BigDataTest.BigDataTest.test_register_004_Error_ColumnsName
+ Description: ColumnsName > 50 character
+url: http://10.0.11.242:8080/rest/api/collector/register
+payload: {'version': '1.0', 'name': '5cebb0329d', 'columns': [{'length': 100, 'validator': '', 'type': 'string', 'name': '123456789012345678901234567890123456789012345678901', 'column_sort': 1}, {'length': 3, 'type': 'number', 'name': 'age', 'column_sort': 2}]}
+response: status_code is 500 , {"errorCode":"10000","errorMsg":"internal error"}
+
+Case ID: Case.BigDataTest.BigDataTest.test_register_005_Error_ColumnsName
+ Description: ColumnsName = null
+url: http://10.0.11.242:8080/rest/api/collector/register
+payload: {'version': '1.0', 'name': 'c1c9ddd7f9', 'columns': [{'length': 100, 'validator': '', 'type': 'string', 'name': '', 'column_sort': 1}, {'length': 3, 'type': 'number', 'name': 'age', 'column_sort': 2}]}
+response: status_code is 400 , {"errorCode":"70004","errorMsg":"schema validate failed"}
+
+Case ID: Case.BigDataTest.BigDataTest.test_register_006_Error_ColumnsName2
+ Description: ColumnsName2 > 50 character
+url: http://10.0.11.242:8080/rest/api/collector/register
+payload: {'version': '1.0', 'name': 'dcd3f2ee95', 'columns': [{'length': 100, 'validator': '', 'type': 'string', 'name': 'name', 'column_sort': 1}, {'length': 3, 'type': 'number', 'name': '123456789012345678901234567890123456789012345678901', 'column_sort': 2}]}
+response: status_code is 500 , {"errorCode":"10000","errorMsg":"internal error"}
+
+Case ID: Case.BigDataTest.BigDataTest.test_register_007_Error_ColumnsName2
+ Description: ColumnsName = null
+url: http://10.0.11.242:8080/rest/api/collector/register
+payload: {'version': '1.0', 'name': 'c8ee35c9e3', 'columns': [{'length': 100, 'validator': '', 'type': 'string', 'name': 'name', 'column_sort': 1}, {'length': 3, 'type': 'number', 'name': '', 'column_sort': 2}]}
+response: status_code is 400 , {"errorCode":"70004","errorMsg":"schema validate failed"}
+
+]]>	</system-out>
+	<system-err>
+<![CDATA[]]>	</system-err>
+</testsuite>

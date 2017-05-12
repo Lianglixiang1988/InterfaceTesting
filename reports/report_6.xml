@@ -1,0 +1,96 @@
+<?xml version="1.0" ?>
+<testsuite errors="4" failures="0" name="Case.P2PServerTest.P2PServerTest-20170510171607" tests="8" time="11.200">
+	<testcase classname="Case.P2PServerTest.P2PServerTest" name="test_create_163_account_003_wrong_token" time="0.722"/>
+	<testcase classname="Case.P2PServerTest.P2PServerTest" name="test_query_163_account_002_not_created" time="0.716"/>
+	<testcase classname="Case.P2PServerTest.P2PServerTest" name="test_query_163_account_002_wrong_token" time="1.298"/>
+	<testcase classname="Case.P2PServerTest.P2PServerTest" name="test_refresh_account_001" time="1.801"/>
+	<testcase classname="Case.P2PServerTest.P2PServerTest" name="test_create_163_account_001_new_user" time="1.533">
+		<error message="Expected response code = 200. Actual = 400." type="AssertionError">
+<![CDATA[Traceback (most recent call last):
+  File "D:\Projects\QA\QA_Mainline\Automation\InterfaceTesting\Case\P2PServerTest.py", line 106, in test_create_163_account_001_new_user
+    'Expected response code = 200. Actual = %s.' % create_163_account_rp.status_code)
+AssertionError: Expected response code = 200. Actual = 400.
+]]>		</error>
+	</testcase>
+	<testcase classname="Case.P2PServerTest.P2PServerTest" name="test_create_163_account_002_user_existed" time="2.437">
+		<error message="Expected errorMsg is: already created. Actual = parameter error." type="AssertionError">
+<![CDATA[Traceback (most recent call last):
+  File "D:\Projects\QA\QA_Mainline\Automation\InterfaceTesting\Case\P2PServerTest.py", line 131, in test_create_163_account_002_user_existed
+    'Expected errorMsg is: already created. Actual = %s.' % data_create_163_account_rp['errorMsg'])
+AssertionError: Expected errorMsg is: already created. Actual = parameter error.
+]]>		</error>
+	</testcase>
+	<testcase classname="Case.P2PServerTest.P2PServerTest" name="test_query_163_account_001" time="1.278">
+		<error message="Expected response code = 200. Actual = 400." type="AssertionError">
+<![CDATA[Traceback (most recent call last):
+  File "D:\Projects\QA\QA_Mainline\Automation\InterfaceTesting\Case\P2PServerTest.py", line 198, in test_query_163_account_001
+    'Expected response code = 200. Actual = %s.' % create_163_account_rp.status_code)
+AssertionError: Expected response code = 200. Actual = 400.
+]]>		</error>
+	</testcase>
+	<testcase classname="Case.P2PServerTest.P2PServerTest" name="test_send_msg_001" time="1.415">
+		<error message="'im_token'" type="KeyError">
+<![CDATA[Traceback (most recent call last):
+  File "D:\Projects\QA\QA_Mainline\Automation\InterfaceTesting\Case\P2PServerTest.py", line 260, in test_send_msg_001
+    acc_token = data_create_163_account_rp['im_token']
+KeyError: 'im_token'
+]]>		</error>
+	</testcase>
+	<system-out>
+<![CDATA[Case ID: Case.P2PServerTest.P2PServerTest.test_create_163_account_001_new_user
+Description: test create a 163 account
+url_create_163_account: http://10.0.11.242:8080/rest/api/im/im_acc
+ create_163_account_payload: {'token': u'3c5841e1-fd3f-4d6f-99e2-86137294410f'}
+response: status_code is 400 {"errorCode":"10000","errorMsg":"parameter error"}
+
+Case ID: Case.P2PServerTest.P2PServerTest.test_create_163_account_002_user_existed
+Description: test create a 163 account but the user already existed
+url_create_163_account: http://10.0.11.242:8080/rest/api/im/im_acc
+create_163_account_payload: {'token': u'61e3e501-96d7-4664-876e-91becf3f3c2d'}
+response: status_code is 400 {"errorCode":"10000","errorMsg":"parameter error"}
+
+Case ID: Case.P2PServerTest.P2PServerTest.test_create_163_account_003_wrong_token
+Description: test create a 163 account with wrong token
+url_create_163_account: http://10.0.11.242:8080/rest/api/im/im_acc
+create_163_account_payload: {'token': u'3c4ee008-f631-4458-84bf-c29cbb4d86ea9527'}
+response: status_code is 400 {"errorCode":"30005","errorMsg":"user token check failed"}
+
+Case ID: Case.P2PServerTest.P2PServerTest.test_query_163_account_001
+Description: test query a 163 account
+url_create_163_account: http://10.0.11.242:8080/rest/api/im/im_acc
+create_163_account_payload: {'token': u'c8c6f38d-dd2a-46c9-be2e-7c81a9df3ecc'}
+response: status_code is 400 {"errorCode":"10000","errorMsg":"parameter error"}
+
+url_query: http://10.0.11.242:8080/rest/api/im/im_acc?token=c8c6f38d-dd2a-46c9-be2e-7c81a9df3ecc
+
+response: status_code is 400 {"errorCode":"10000","errorMsg":"no account"}
+
+Case ID: Case.P2PServerTest.P2PServerTest.test_query_163_account_002_not_created
+Description: test query a 163 account but the account has not been created yet
+url_query: http://10.0.11.242:8080/rest/api/im/im_acc?token=e696d626-4b96-4db9-9c65-2cffca3824b6
+
+response: status_code is 400 {"errorCode":"10000","errorMsg":"no account"}
+
+Case ID: Case.P2PServerTest.P2PServerTest.test_query_163_account_002_wrong_token
+Description: test query a 163 account with wrong token
+url_create_163_account: http://10.0.11.242:8080/rest/api/im/im_acc
+create_163_account_payload: {'token': u'5f0b8b53-1508-438b-aba5-dfa94dfc58b7'}
+response: status_code is 400 {"errorCode":"10000","errorMsg":"parameter error"}
+
+url_query: http://10.0.11.242:8080/rest/api/im/im_acc?token=5f0b8b53-1508-438b-aba5-dfa94dfc58b79527
+
+response: status_code is 400 {"errorCode":"30005","errorMsg":"user token check failed"}
+
+Case ID: Case.P2PServerTest.P2PServerTest.test_refresh_account_001
+Description: test create a 163 account
+url_refresh: http://10.0.11.242:8080/rest/api/im/refresh_im_token
+refresh_163_account_payload: {'token': u'c1629d15-636c-45ba-97fd-08fcae608e6d'}
+response: status_code is 400 {"errorCode":"10000","errorMsg":"parameter error"}
+
+Case ID: Case.P2PServerTest.P2PServerTest.test_send_msg_001
+Description: test batch send msg
+{"errorCode":"10000","errorMsg":"parameter error"}
+]]>	</system-out>
+	<system-err>
+<![CDATA[]]>	</system-err>
+</testsuite>

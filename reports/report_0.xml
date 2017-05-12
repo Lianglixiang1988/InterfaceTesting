@@ -1,0 +1,116 @@
+<?xml version="1.0" ?>
+<testsuite errors="0" failures="0" name="Case.AccountTest.AccountTest-20170510171451" tests="16" time="12.260">
+	<testcase classname="Case.AccountTest.AccountTest" name="test_login_001_correct_credential" time="1.161"/>
+	<testcase classname="Case.AccountTest.AccountTest" name="test_login_002_wrong_password" time="0.688"/>
+	<testcase classname="Case.AccountTest.AccountTest" name="test_login_003_wrong_email" time="0.439"/>
+	<testcase classname="Case.AccountTest.AccountTest" name="test_logout_001_correct_token" time="1.716"/>
+	<testcase classname="Case.AccountTest.AccountTest" name="test_logout_002_wrong_token" time="1.364"/>
+	<testcase classname="Case.AccountTest.AccountTest" name="test_logout_003_empty_token" time="0.359"/>
+	<testcase classname="Case.AccountTest.AccountTest" name="test_query_user_role_001_general_user" time="2.093"/>
+	<testcase classname="Case.AccountTest.AccountTest" name="test_query_user_role_002_wrong_token" time="0.705"/>
+	<testcase classname="Case.AccountTest.AccountTest" name="test_register_001_new_user" time="0.866"/>
+	<testcase classname="Case.AccountTest.AccountTest" name="test_register_002_existed_name" time="0.511"/>
+	<testcase classname="Case.AccountTest.AccountTest" name="test_register_003_existed_email" time="0.460"/>
+	<testcase classname="Case.AccountTest.AccountTest" name="test_register_004_empty_name" time="0.388"/>
+	<testcase classname="Case.AccountTest.AccountTest" name="test_register_005_empty_email" time="0.384"/>
+	<testcase classname="Case.AccountTest.AccountTest" name="test_register_006_illegal_email" time="0.377"/>
+	<testcase classname="Case.AccountTest.AccountTest" name="test_register_007_too_long_name" time="0.391"/>
+	<testcase classname="Case.AccountTest.AccountTest" name="test_register_008_too_short_name" time="0.358"/>
+	<system-out>
+<![CDATA[Case ID: Case.AccountTest.AccountTest.test_login_001_correct_credential
+Description: Check user can login with correct email and password
+url: http://10.0.11.242:8080/rest/api/account/login
+payload: {'email': 'lin.liu1@hypereal.com', 'passphrase': 'Test1234'}
+response: status_code is 200 , {"Msg":"login success","token":"f6c1b464-e185-45c0-b4e4-d32a2a5fa509"}
+
+Case ID: Case.AccountTest.AccountTest.test_login_002_wrong_password
+Description: Check user can not login with correct email and wrong password
+url: http://10.0.11.242:8080/rest/api/account/login
+payload: {'email': 'lin.liu1@hypereal.com', 'passphrase': 'pwd'}
+response: {"errorCode":"30002","leftTimes":"4","errorMsg":"login failed"} 
+
+Case ID: Case.AccountTest.AccountTest.test_login_003_wrong_email
+Description: Check user can not login with wrong email and correct password
+url: http://10.0.11.242:8080/rest/api/account/login
+payload: {'email': 'email', 'passphrase': 'Test1234'}
+response: {"errorCode":"30001","errorMsg":"no user"} 
+
+Case ID: Case.AccountTest.AccountTest.test_logout_001_correct_token
+Description: Logout with correct token
+url: http://10.0.11.242:8080/rest/api/oauth/token?access_token=4d3c95fc-ef97-4068-b91d-e34d94cacfa1
+response: status_code is 200 , {}
+
+Case ID: Case.AccountTest.AccountTest.test_logout_002_wrong_token
+Description: Logout with wrong token
+url: http://10.0.11.242:8080/rest/api/oauth/token?access_token=123
+response: status_code is 400 , {"errorCode":"10000","errorMsg":"token not found"}
+
+Case ID: Case.AccountTest.AccountTest.test_logout_003_empty_token
+Description: user logout with empty token
+url: http://10.0.11.242:8080/rest/api/oauth/token?access_token=
+response: status_code is 400 , {"errorCode":"10000","errorMsg":"token not found"}
+
+Case ID: Case.AccountTest.AccountTest.test_query_user_role_001_general_user
+Description: test query role of general user
+url_query_user_role: http://10.0.11.242:8080/rest/api/account/role?token=f5e323f0-32d4-4026-bbe7-1b6cd9f9f482
+
+response: status_code is 200 , {"roles":[]}
+
+Case ID: Case.AccountTest.AccountTest.test_query_user_role_002_wrong_token
+Description: test query role of general user with wrong token
+url_query_user_role: http://10.0.11.242:8080/rest/api/account/role?token=4e52eb10-2a12-4129-8160-add4fd9701809527
+
+response: status_code is 400 , {"errorCode":"30005","errorMsg":"user token check failed"}
+
+Case ID: Case.AccountTest.AccountTest.test_register_001_new_user
+Description: register a new user
+url: http://10.0.11.242:8080/rest/api/account/register
+payload: {'image_path': '1', 'gender': 'M', 'birthday': '1980-01-02', 'passphrase': 'Test1234', 'nickname': '9c33b471c6', 'email': 'test+8fd957cd@hypereal.com'}
+response: status_code is 200 , {"Msg":"register ok"}
+
+Case ID: Case.AccountTest.AccountTest.test_register_002_existed_name
+Description: register a new user using a existed nickname
+url: http://10.0.11.242:8080/rest/api/account/register
+payload: {'image_path': '1', 'gender': 'M', 'birthday': '1980-01-02', 'passphrase': 'Test1234', 'nickname': 'lin.liu1', 'email': 'test.7f3274e6@hypereal.com'}
+response: status_code is 400 , {"errorCode":"30004","errorMsg":"User nickname already exist"}
+
+Case ID: Case.AccountTest.AccountTest.test_register_003_existed_email
+Description: register a new user using a existed email
+url: http://10.0.11.242:8080/rest/api/account/register
+payload: {'image_path': '1', 'gender': 'M', 'birthday': '1980-01-02', 'passphrase': 'Test1234', 'nickname': '62ea97e0a3', 'email': 'lin.liu1@hypereal.com'}
+response: status_code is 400 , {"errorCode":"30004","errorMsg":"User email already exist"}
+
+Case ID: Case.AccountTest.AccountTest.test_register_004_empty_name
+Description: register a new user using a empty nick name
+url: http://10.0.11.242:8080/rest/api/account/register
+payload: {'image_path': '1', 'gender': 'M', 'birthday': '1980-01-02', 'passphrase': 'Test1234', 'nickname': '', 'email': 'test.4b8e21db@hypereal.com'}
+response: status_code is 400 , {"errorCode":"30008","errorMsg":"User name size should between 4 to 16 characters\n"}
+
+Case ID: Case.AccountTest.AccountTest.test_register_005_empty_email
+Description: register a new user using a empty email
+url: http://10.0.11.242:8080/rest/api/account/register
+payload: {'image_path': '1', 'gender': 'M', 'birthday': '1980-01-02', 'passphrase': 'Test1234', 'nickname': 'f5a581ed5a', 'email': ''}
+response: status_code is 400 , {"errorCode":"30008","errorMsg":"Invalid Email Address Format\n"}
+
+Case ID: Case.AccountTest.AccountTest.test_register_006_illegal_email
+Description: register a new user using a illegal email address
+url: http://10.0.11.242:8080/rest/api/account/register
+payload: {'image_path': '1', 'gender': 'M', 'birthday': '1980-01-02', 'passphrase': 'Test1234', 'nickname': '3af733d5e5', 'email': 'test.hypreal.com'}
+response: status_code is 400 , {"errorCode":"30008","errorMsg":"Invalid Email Address Format\n"}
+
+Case ID: Case.AccountTest.AccountTest.test_register_007_too_long_name
+Description: register a new user using a very long nick name
+url: http://10.0.11.242:8080/rest/api/account/register
+payload: {'image_path': '1', 'gender': 'M', 'birthday': '1980-01-02', 'passphrase': 'Test1234', 'nickname': '4758e347-3603-4509-8079-d182bf7e4b71e121d9dd-e774-4ccb-bbd1-2b0ca5d03790', 'email': 'test.bc832289@hypereal.com'}
+response: status_code is 400 , {"errorCode":"30008","errorMsg":"User name size should between 4 to 16 characters\n"}
+
+Case ID: Case.AccountTest.AccountTest.test_register_008_too_short_name
+Description: register a new user using a very short nick name
+url: http://10.0.11.242:8080/rest/api/account/register
+payload: {'image_path': '1', 'gender': 'M', 'birthday': '1980-01-02', 'passphrase': 'Test1234', 'nickname': 'ab', 'email': 'test.754318a3@hypereal.com'}
+response: status_code is 400 , {"errorCode":"30008","errorMsg":"User name size should between 4 to 16 characters"}
+
+]]>	</system-out>
+	<system-err>
+<![CDATA[]]>	</system-err>
+</testsuite>

@@ -1,0 +1,28 @@
+<?xml version="1.0" ?>
+<testsuite errors="0" failures="0" name="Case.FirmwareTest.FirmwareTest-20170510171539" tests="3" time="0.062">
+	<testcase classname="Case.FirmwareTest.FirmwareTest" name="test_create_firmware_001_correct_secret" time="0.039"/>
+	<testcase classname="Case.FirmwareTest.FirmwareTest" name="test_create_firmware_002_wrong_secret" time="0.012"/>
+	<testcase classname="Case.FirmwareTest.FirmwareTest" name="test_get_firmware_001_get_latestversion" time="0.011"/>
+	<system-out>
+<![CDATA[Case ID: Case.FirmwareTest.FirmwareTest.test_create_firmware_001_correct_secret
+Description: test create the latest firmware file with correct secret
+url: http://10.0.11.242:8080/rest/api/firmware/latestversion
+
+response: status_code is 200 , {"Msg":"add version ok"}
+
+Case ID: Case.FirmwareTest.FirmwareTest.test_create_firmware_002_wrong_secret
+Description: test create the latest firmware file with wrong secret
+url: http://10.0.11.242:8080/rest/api/firmware/latestversion
+
+response: status_code is 400 , {"errorCode":"10000","errorMsg":"parameter check failed"}
+
+Case ID: Case.FirmwareTest.FirmwareTest.test_get_firmware_001_get_latestversion
+Description: get latest firmware version
+url: http://10.0.11.242:8080/rest/api/firmware/latestversion?type=client&pid=pid&secret=N3Ld6PpBKd0vwUtywQ63
+
+response: status_code is 200 , {"bucket":"hyperfw","file_path":"pano/0.1.13.6/Hypereal Pano.json","endpoint":"oss-cn-shenzhen.aliyuncs.com","type":"client","device":"dfu","version":"0.1.13.6","md5":"6c762136f7e65ce9a2b78f817fa451b4"}
+
+]]>	</system-out>
+	<system-err>
+<![CDATA[]]>	</system-err>
+</testsuite>

@@ -1,0 +1,77 @@
+<?xml version="1.0" ?>
+<testsuite errors="1" failures="0" name="Case.GamgOrderTest.GameOrderTest-20170510171622" tests="9" time="0.161">
+	<testcase classname="Case.GamgOrderTest.GameOrderTest" name="test_001_check_user_all_game" time="0.011"/>
+	<testcase classname="Case.GamgOrderTest.GameOrderTest" name="test_001_create_Game_order" time="0.050"/>
+	<testcase classname="Case.GamgOrderTest.GameOrderTest" name="test_002_error_null_Authorization" time="0.009"/>
+	<testcase classname="Case.GamgOrderTest.GameOrderTest" name="test_002_error_null_orderid" time="0.009"/>
+	<testcase classname="Case.GamgOrderTest.GameOrderTest" name="test_002_null_returnUrl" time="0.031"/>
+	<testcase classname="Case.GamgOrderTest.GameOrderTest" name="test_003_error_orderid" time="0.010"/>
+	<testcase classname="Case.GamgOrderTest.GameOrderTest" name="test_003_null_sellableItemId" time="0.014"/>
+	<testcase classname="Case.GamgOrderTest.GameOrderTest" name="test_004_error_sellableItemId" time="0.011"/>
+	<testcase classname="Case.GamgOrderTest.GameOrderTest" name="test_001_check_order_status" time="0.016">
+		<error message="Expected response code = 200. Actual = 500." type="AssertionError">
+<![CDATA[Traceback (most recent call last):
+  File "D:\Projects\QA\QA_Mainline\Automation\InterfaceTesting\Case\GamgOrderTest.py", line 126, in test_001_check_order_status
+    self.assertEqual(200, rp.status_code, 'Expected response code = 200. Actual = %s.' % rp.status_code)
+AssertionError: Expected response code = 200. Actual = 500.
+]]>		</error>
+	</testcase>
+	<system-out>
+<![CDATA[Case ID: Case.GamgOrderTest.GameOrderTest.test_001_check_order_status
+ Description: check game order status
+url_check_user_info: http://10.0.11.242:8080/rest/api/game/order/2
+
+response: status_code is 500 , {"errorCode":"10000","errorMsg":"internal error"}
+
+Case ID: Case.GamgOrderTest.GameOrderTest.test_001_check_user_all_game
+ Description: check List all ordered games by specific user
+url_check_user_info: http://10.0.11.242:8080/rest/api/game/ordered
+
+response: status_code is 200 , []
+
+Case ID: Case.GamgOrderTest.GameOrderTest.test_001_create_Game_order
+ Description: create game order
+url: http://10.0.11.242:8080/rest/api/game/order
+payload: {'sellableItemId': 2, 'returnUrl': 'http://www.hypereal.com'}
+response: status_code is 200 , {"alipayUrl":"https://mapi.alipay.com/gateway.do?_input_charset=utf-8&body=Test+app+order+content+%3A+%E4%B8%AD%E6%96%87&it_b_pay=30m&notify_url=http%3A%2F%2F10.0.11.242%3A8080%2F%2Frest%2Fapi%2Fpayment%2Falipay%2Fnotify&out_trade_no=b8c0f3c6-1c8c-4de9-b7eb-c1c1392b91ae&partner=2088621467830355&payment_type=1&return_url=http%3A%2F%2Fwww.hypereal.com&seller_id=2088621467830355&service=create_direct_pay_by_user&sign=77ccba1b0afac8caaf00703742073428&sign_type=MD5&subject=Test+app+order+subject&total_fee=0.01"}
+
+Case ID: Case.GamgOrderTest.GameOrderTest.test_002_error_null_Authorization
+ Description: Authorization = null
+url_check_user_info: http://10.0.11.242:8080/rest/api/game/ordered
+
+response: status_code is 400 , {"errorCode":"30005","errorMsg":"user token error"}
+
+Case ID: Case.GamgOrderTest.GameOrderTest.test_002_error_null_orderid
+ Description: orderid = null
+url_check_user_info: http://10.0.11.242:8080/rest/api/game/order/
+
+response: status_code is 400 , HTTP 405 Method Not Allowed
+
+Case ID: Case.GamgOrderTest.GameOrderTest.test_002_null_returnUrl
+ Description: returnUrl = null
+url: http://10.0.11.242:8080/rest/api/game/order
+payload: {'sellableItemId': 2, 'returnUrl': ''}
+response: status_code is 200 , {"alipayUrl":"https://mapi.alipay.com/gateway.do?_input_charset=utf-8&body=Test+app+order+content+%3A+%E4%B8%AD%E6%96%87&it_b_pay=30m&notify_url=http%3A%2F%2F10.0.11.242%3A8080%2F%2Frest%2Fapi%2Fpayment%2Falipay%2Fnotify&out_trade_no=f87266b8-8f86-4d03-bdf3-2339f4f7fb57&partner=2088621467830355&payment_type=1&seller_id=2088621467830355&service=create_direct_pay_by_user&sign=e595b1e2f2d5ce470fc5499c80c6fa80&sign_type=MD5&subject=Test+app+order+subject&total_fee=0.01"}
+
+Case ID: Case.GamgOrderTest.GameOrderTest.test_003_error_orderid
+ Description: check game order status
+url_check_user_info: http://10.0.11.242:8080/rest/api/game/order/100
+
+response: status_code is 500 , {"errorCode":"10000","errorMsg":"internal error"}
+
+Case ID: Case.GamgOrderTest.GameOrderTest.test_003_null_sellableItemId
+ Description: sellableItemId = null
+url: http://10.0.11.242:8080/rest/api/game/order
+payload: {'sellableItemId': '', 'returnUrl': 'http://www.hypereal.com'}
+response: status_code is 500 , {"timestamp":1494407799389,"status":500,"error":"Internal Server Error","message":"Internal Server Error","path":"/rest/api/game/order"}
+
+Case ID: Case.GamgOrderTest.GameOrderTest.test_004_error_sellableItemId
+ Description: error sellableItemId
+url: http://10.0.11.242:8080/rest/api/game/order
+payload: {'sellableItemId': '100', 'returnUrl': 'http://www.hypereal.com'}
+response: status_code is 500 , {"errorCode":"10000","errorMsg":"internal error"}
+
+]]>	</system-out>
+	<system-err>
+<![CDATA[]]>	</system-err>
+</testsuite>

@@ -1,0 +1,243 @@
+<?xml version="1.0" ?>
+<testsuite errors="0" failures="0" name="Case.SessionTest.SessionTest-20170510171519" tests="25" time="19.601">
+	<testcase classname="Case.SessionTest.SessionTest" name="test_add_session_user_001" time="0.863"/>
+	<testcase classname="Case.SessionTest.SessionTest" name="test_add_session_user_002_user_not_existed" time="0.721"/>
+	<testcase classname="Case.SessionTest.SessionTest" name="test_add_session_user_003_wrong_session_id" time="0.806"/>
+	<testcase classname="Case.SessionTest.SessionTest" name="test_add_session_user_004_wrong_token" time="0.812"/>
+	<testcase classname="Case.SessionTest.SessionTest" name="test_add_session_user_005_user_existed_in_the_session" time="0.853"/>
+	<testcase classname="Case.SessionTest.SessionTest" name="test_create_session_001_correct_token" time="0.730"/>
+	<testcase classname="Case.SessionTest.SessionTest" name="test_create_session_002_wrong_token" time="0.347"/>
+	<testcase classname="Case.SessionTest.SessionTest" name="test_create_session_003_empty_content" time="0.699"/>
+	<testcase classname="Case.SessionTest.SessionTest" name="test_delete_session_001_correct_token" time="0.752"/>
+	<testcase classname="Case.SessionTest.SessionTest" name="test_delete_session_002_wrong_token" time="0.721"/>
+	<testcase classname="Case.SessionTest.SessionTest" name="test_delete_session_003_not_creator" time="1.110"/>
+	<testcase classname="Case.SessionTest.SessionTest" name="test_delete_session_004_wrong_session" time="0.765"/>
+	<testcase classname="Case.SessionTest.SessionTest" name="test_delete_session_user_001" time="0.814"/>
+	<testcase classname="Case.SessionTest.SessionTest" name="test_delete_session_user_002_user_not_existed" time="0.878"/>
+	<testcase classname="Case.SessionTest.SessionTest" name="test_delete_session_user_003_wrong_session" time="0.819"/>
+	<testcase classname="Case.SessionTest.SessionTest" name="test_delete_session_user_004_wrong_token" time="0.832"/>
+	<testcase classname="Case.SessionTest.SessionTest" name="test_query_session_001_correct_token" time="0.748"/>
+	<testcase classname="Case.SessionTest.SessionTest" name="test_query_session_002_wrong_token" time="0.763"/>
+	<testcase classname="Case.SessionTest.SessionTest" name="test_query_session_003_wrong_session" time="0.765"/>
+	<testcase classname="Case.SessionTest.SessionTest" name="test_query_session_user_001" time="0.832"/>
+	<testcase classname="Case.SessionTest.SessionTest" name="test_query_session_user_002_wrong_session_id" time="0.854"/>
+	<testcase classname="Case.SessionTest.SessionTest" name="test_query_session_user_002_wrong_token" time="0.845"/>
+	<testcase classname="Case.SessionTest.SessionTest" name="test_update_session_001_correct_token" time="0.736"/>
+	<testcase classname="Case.SessionTest.SessionTest" name="test_update_session_002_wrong_token" time="0.755"/>
+	<testcase classname="Case.SessionTest.SessionTest" name="test_update_session_003_wrong_session" time="0.781"/>
+	<system-out>
+<![CDATA[Case ID: Case.SessionTest.SessionTest.test_add_session_user_001
+Description: test add a session user
+url: http://10.0.11.242:8080/rest/api/sessions
+ payload: {'content': 'test session', 'token': u'1d1e6b2c-9fc2-4d4a-a57e-7e4361dfc9db', 'state': 'up', 'name': 'session$123', 'appid': '123'}
+response: status_code is 200 , {"appid":"123","name":"session$123","id":3146,"state":"up","content":"test session"}
+
+url_add_session_user: http://10.0.11.242:8080/rest/api/session_users
+ payload1: {'token': u'1d1e6b2c-9fc2-4d4a-a57e-7e4361dfc9db', 'user_id': 74374, 'session_id': '3146'}
+response: status_code is 200 , {"Msg":"add ok"}
+
+Case ID: Case.SessionTest.SessionTest.test_add_session_user_002_user_not_existed
+Description: test add a session user but the user does not existed
+url: http://10.0.11.242:8080/rest/api/sessions
+ payload: {'content': 'test session', 'token': u'05505c05-f58f-4bd5-80cd-f5f9aed616fc', 'state': 'up', 'name': 'session$123', 'appid': '123'}
+response: status_code is 200 , {"appid":"123","name":"session$123","id":3147,"state":"up","content":"test session"}
+
+url_add_session_user: http://10.0.11.242:8080/rest/api/session_users
+ payload1: {'token': u'05505c05-f58f-4bd5-80cd-f5f9aed616fc', 'user_id': 0, 'session_id': '3147'}
+response: status_code is 400 , {"errorCode":"30009","errorMsg":"no such user"}
+
+Case ID: Case.SessionTest.SessionTest.test_add_session_user_003_wrong_session_id
+Description: test add a session user but with wrong session id
+url: http://10.0.11.242:8080/rest/api/sessions
+ payload: {'content': 'test session', 'token': u'8f1f2cac-005c-4b2d-9576-d1c351fb0a93', 'state': 'up', 'name': 'session$123', 'appid': '123'}
+response: status_code is 200 , {"appid":"123","name":"session$123","id":3148,"state":"up","content":"test session"}
+
+url_add_session_user: http://10.0.11.242:8080/rest/api/session_users
+ payload1: {'token': u'8f1f2cac-005c-4b2d-9576-d1c351fb0a93', 'user_id': 74374, 'session_id': 0}
+response: status_code is 400 , {"errorCode":"10000","errorMsg":"No session for such user"}
+
+Case ID: Case.SessionTest.SessionTest.test_add_session_user_004_wrong_token
+Description: test add a session user but with wrong token
+url: http://10.0.11.242:8080/rest/api/sessions
+ payload: {'content': 'test session', 'token': u'7fa1e8ce-061f-44b5-b4af-bd57b94e221f', 'state': 'up', 'name': 'session$123', 'appid': '123'}
+response: status_code is 200 , {"appid":"123","name":"session$123","id":3149,"state":"up","content":"test session"}
+
+url_add_session_user: http://10.0.11.242:8080/rest/api/session_users
+ payload1: {'token': 9527, 'user_id': 74374, 'session_id': '3149'}
+response: status_code is 400 , {"errorCode":"30005","errorMsg":"user token check failed"}
+
+Case ID: Case.SessionTest.SessionTest.test_add_session_user_005_user_existed_in_the_session
+Description: test add a session user
+url: http://10.0.11.242:8080/rest/api/sessions
+ payload: {'content': 'test session', 'token': u'111c8475-6db5-4e9b-b48b-ead640f15381', 'state': 'up', 'name': 'session$123', 'appid': '123'}
+response: status_code is 200 , {"appid":"123","name":"session$123","id":3150,"state":"up","content":"test session"}
+
+url_add_session_user: http://10.0.11.242:8080/rest/api/session_users
+ payload1: {'token': u'111c8475-6db5-4e9b-b48b-ead640f15381', 'user_id': 74374, 'session_id': '3150'}
+response: status_code is 400 , {"errorCode":"10000","errorMsg":"user exists in the session"}
+
+Case ID: Case.SessionTest.SessionTest.test_create_session_001_correct_token
+Description: create a new session with correct token
+url: http://10.0.11.242:8080/rest/api/sessions
+payload: {'content': 'test session', 'token': u'd6e6c0a2-bd00-4344-a5ba-9a41dfa393be', 'state': 'up', 'name': 'session$123', 'appid': '123'}
+response: status_code is 200 , {"appid":"123","name":"session$123","id":3151,"state":"up","content":"test session"}
+
+Case ID: Case.SessionTest.SessionTest.test_create_session_002_wrong_token
+Description: create a new session with wrong token
+url: http://10.0.11.242:8080/rest/api/sessions
+payload: {'content': 'test session', 'token': '9527', 'state': 'up', 'name': 'session$123', 'appid': '123'}
+response: status_code is 400 , {"errorCode":"30005","errorMsg":"user token check failed"}
+
+Case ID: Case.SessionTest.SessionTest.test_create_session_003_empty_content
+Description: create a new session with correct token but empty content
+url: http://10.0.11.242:8080/rest/api/sessions
+payload: {'content': '', 'token': u'2be94156-8dfb-4f03-adbf-96f88583f2f9', 'state': '', 'name': '', 'appid': ''}
+response: status_code is 400 , {"errorCode":"10100","errorMsg":"invalid session name"}
+
+Case ID: Case.SessionTest.SessionTest.test_delete_session_001_correct_token
+Description: test delete session with correct token
+url_delete_session: http://10.0.11.242:8080/rest/api/sessions?token=d22a0a13-ef45-483a-80b9-178223fc61a5&id=3152
+response: status_code is 200 , {}
+
+Case ID: Case.SessionTest.SessionTest.test_delete_session_002_wrong_token
+Description: test delete session with wrong token
+url_delete_session: http://10.0.11.242:8080/rest/api/sessions?token=&id=3153
+response: status_code is 400 , {"errorCode":"30005","errorMsg":"user token error"}
+
+Case ID: Case.SessionTest.SessionTest.test_delete_session_003_not_creator
+Description: test delete session with not creator
+url_delete_session: http://10.0.11.242:8080/rest/api/sessions?token=6a9d0f91-3e03-4b0c-9b4c-06b28250fa44&id=3154
+response: status_code is 400 , {"errorCode":"10000","errorMsg":"No session for such user"}
+
+Case ID: Case.SessionTest.SessionTest.test_delete_session_004_wrong_session
+Description: test delete session with wrong session and correct token
+url_delete_session: http://10.0.11.242:8080/rest/api/sessions?token=373e9fb7-d254-486f-9dfa-d83d61deb171&id=000
+response: status_code is 400 , {"errorCode":"10100","errorMsg":"error session id"}
+
+Case ID: Case.SessionTest.SessionTest.test_delete_session_user_001
+Description: test delete a session user
+url: http://10.0.11.242:8080/rest/api/sessions
+ payload: {'content': 'test session', 'token': u'9024d7af-0620-455e-9e36-3e41aff1d54a', 'state': 'up', 'name': 'session$123', 'appid': '123'}
+response: status_code is 200 , {"appid":"123","name":"session$123","id":3156,"state":"up","content":"test session"}
+
+url_add_session_user: http://10.0.11.242:8080/rest/api/session_users
+ payload1: {'token': u'9024d7af-0620-455e-9e36-3e41aff1d54a', 'user_id': 74374, 'session_id': '3156'}
+response: status_code is 200 , {"Msg":"add ok"}
+
+(u'url_delete_session_user: http://10.0.11.242:8080/rest/api/session_users?token=9024d7af-0620-455e-9e36-3e41aff1d54a&user_id=74374&session_id=3156\n',)
+response: status_code is 200 , {"Msg":"delete ok"}
+
+Case ID: Case.SessionTest.SessionTest.test_delete_session_user_002_user_not_existed
+Description: test delete a session user but the user does not exist in the session
+url: http://10.0.11.242:8080/rest/api/sessions
+ payload: {'content': 'test session', 'token': u'c28d400d-8dc5-479d-8814-ae1d3768d4ed', 'state': 'up', 'name': 'session$123', 'appid': '123'}
+response: status_code is 200 , {"appid":"123","name":"session$123","id":3157,"state":"up","content":"test session"}
+
+(u'url_delete_session_user: http://10.0.11.242:8080/rest/api/session_users?token=c28d400d-8dc5-479d-8814-ae1d3768d4ed&user_id=74374&session_id=3157\n',)
+response: status_code is 400 , {"errorCode":"10000","errorMsg":"user does not exist in the session"}
+
+Case ID: Case.SessionTest.SessionTest.test_delete_session_user_003_wrong_session
+Description: test delete a session user with wrong session
+url: http://10.0.11.242:8080/rest/api/sessions
+ payload: {'content': 'test session', 'token': u'77f01788-03d7-4c18-9060-cfea52a56ac8', 'state': 'up', 'name': 'session$123', 'appid': '123'}
+response: status_code is 200 , {"appid":"123","name":"session$123","id":3158,"state":"up","content":"test session"}
+
+url_add_session_user: http://10.0.11.242:8080/rest/api/session_users
+ payload1: {'token': u'77f01788-03d7-4c18-9060-cfea52a56ac8', 'user_id': 74374, 'session_id': '3158'}
+response: status_code is 200 , {"Msg":"add ok"}
+
+(u'url_delete_session_user: http://10.0.11.242:8080/rest/api/session_users?token=77f01788-03d7-4c18-9060-cfea52a56ac8&user_id=74374&session_id=000000\n',)
+response: status_code is 400 , {"errorCode":"10000","errorMsg":"No session for such user"}
+
+Case ID: Case.SessionTest.SessionTest.test_delete_session_user_004_wrong_token
+Description: test delete a session user with wrong token
+url: http://10.0.11.242:8080/rest/api/sessions
+ payload: {'content': 'test session', 'token': u'2a9e4b94-1ae3-4fcc-812a-39f7a2e09d76', 'state': 'up', 'name': 'session$123', 'appid': '123'}
+response: status_code is 200 , {"appid":"123","name":"session$123","id":3159,"state":"up","content":"test session"}
+
+url_add_session_user: http://10.0.11.242:8080/rest/api/session_users
+ payload1: {'token': u'2a9e4b94-1ae3-4fcc-812a-39f7a2e09d76', 'user_id': 74374, 'session_id': '3159'}
+response: status_code is 200 , {"Msg":"add ok"}
+
+('url_delete_session_user: http://10.0.11.242:8080/rest/api/session_users?token=000000&user_id=74374&session_id=3159\n',)
+response: status_code is 400 , {"errorCode":"30005","errorMsg":"user token check failed"}
+
+Case ID: Case.SessionTest.SessionTest.test_query_session_001_correct_token
+Description: test query session with correct token
+url_query_session: http://10.0.11.242:8080/rest/api/sessions?token=0c5f90ce-a2ef-4717-965e-73ff91d4fa4f&id=3160
+response: status_code is 200 , {"appid":"123","name":"session$123","id":3160,"state":"up","content":"test session"}
+
+Case ID: Case.SessionTest.SessionTest.test_query_session_002_wrong_token
+Description: test query session with wrong token
+url_query_session: http://10.0.11.242:8080/rest/api/sessions?token=&id=3161
+response: status_code is 400 , {"errorCode":"30005","errorMsg":"user token error"}
+
+Case ID: Case.SessionTest.SessionTest.test_query_session_003_wrong_session
+Description: test query session with wrong session
+url_query_session: http://10.0.11.242:8080/rest/api/sessions?token=102ab152-fd66-43dc-8bad-e84b7eecca70&id=
+response: status_code is 400 , {"errorCode":"10000","errorMsg":"No session for such user"}
+
+Case ID: Case.SessionTest.SessionTest.test_query_session_user_001
+Description: test query session user info
+url: http://10.0.11.242:8080/rest/api/sessions
+ payload: {'content': 'test session', 'token': u'c795ce93-d320-4fd0-942d-04aad55a0ff3', 'state': 'up', 'name': 'session$123', 'appid': '123'}
+response: status_code is 200 , {"appid":"123","name":"session$123","id":3163,"state":"up","content":"test session"}
+
+url_add_session_user: http://10.0.11.242:8080/rest/api/session_users
+ payload1: {'token': u'c795ce93-d320-4fd0-942d-04aad55a0ff3', 'user_id': 74374, 'session_id': '3163'}
+response: status_code is 200 , {"Msg":"add ok"}
+
+url_query_session_user: http://10.0.11.242:8080/rest/api/session_users?token=c795ce93-d320-4fd0-942d-04aad55a0ff3&session_id=3163
+
+response: status_code is 200 , {"appid":"123","name":"session$123","id":3163,"content":"test session","users":[{"username":"lin.liu1","id":74373},{"username":"lin.liu2","id":74374}]}
+
+Case ID: Case.SessionTest.SessionTest.test_query_session_user_002_wrong_session_id
+Description: test query session user info with wrong session id
+url: http://10.0.11.242:8080/rest/api/sessions
+ payload: {'content': 'test session', 'token': u'b1004f6b-1058-44e1-b271-1c9fea216709', 'state': 'up', 'name': 'session$123', 'appid': '123'}
+response: status_code is 200 , {"appid":"123","name":"session$123","id":3164,"state":"up","content":"test session"}
+
+url_add_session_user: http://10.0.11.242:8080/rest/api/session_users
+ payload1: {'token': u'b1004f6b-1058-44e1-b271-1c9fea216709', 'user_id': 74374, 'session_id': '3164'}
+response: status_code is 200 , {"Msg":"add ok"}
+
+url_query_session_user: http://10.0.11.242:8080/rest/api/session_users?token=b1004f6b-1058-44e1-b271-1c9fea216709&session_id=000000
+
+response: status_code is 400 , {"errorCode":"10000","errorMsg":"No session for such user"}
+
+Case ID: Case.SessionTest.SessionTest.test_query_session_user_002_wrong_token
+Description: test query session user info with wrong token
+url: http://10.0.11.242:8080/rest/api/sessions
+ payload: {'content': 'test session', 'token': u'503d48a1-968b-4f14-87d9-bce3c2408aca', 'state': 'up', 'name': 'session$123', 'appid': '123'}
+response: status_code is 200 , {"appid":"123","name":"session$123","id":3165,"state":"up","content":"test session"}
+
+url_add_session_user: http://10.0.11.242:8080/rest/api/session_users
+ payload1: {'token': u'503d48a1-968b-4f14-87d9-bce3c2408aca', 'user_id': 74374, 'session_id': '3165'}
+response: status_code is 200 , {"Msg":"add ok"}
+
+url_query_session_user: http://10.0.11.242:8080/rest/api/session_users?token=9527&session_id=3165
+
+response: status_code is 400 , {"errorCode":"30005","errorMsg":"user token check failed"}
+
+Case ID: Case.SessionTest.SessionTest.test_update_session_001_correct_token
+Description: test update session with correct token
+url_update_session: http://10.0.11.242:8080/rest/api/sessions
+update_payload: {'content': 'test update session', 'token': u'ee1eace0-6c15-4c95-ae0c-6a1657c8a490', 'state': 'up', 'id': 3166, 'name': 'session$321'}
+response: status_code is 200 , {"appid":"123","name":"session$321","id":3166,"state":"up","content":"test update session"}
+
+Case ID: Case.SessionTest.SessionTest.test_update_session_002_wrong_token
+Description: test update session with wrong token
+url_update_session: http://10.0.11.242:8080/rest/api/sessions
+update_payload: {'content': 'test update session', 'token': '9527', 'state': 'up', 'id': 3167, 'name': 'session$321'}
+response: status_code is 400 , {"errorCode":"30005","errorMsg":"user token check failed"}
+
+Case ID: Case.SessionTest.SessionTest.test_update_session_003_wrong_session
+Description: test update session with wrong session
+url_update_session: http://10.0.11.242:8080/rest/api/sessions
+ update_payload: {'content': 'test update session', 'token': u'c87feba1-38e4-4765-8743-b38ac016026d', 'state': 'up', 'id': '', 'name': 'session$321'}
+response: status_code is 400 , {"errorCode":"10000","errorMsg":"No session for such user"}
+
+]]>	</system-out>
+	<system-err>
+<![CDATA[]]>	</system-err>
+</testsuite>
